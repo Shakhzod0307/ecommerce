@@ -1,0 +1,42 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block title %}Category{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row flex justify-content-between">
+    <div class="img2 col-lg-5 mt-5">
+      <img src="{{ product.product_image.url }}" class="image col-xs-6 col-sm-12 col-lg-12 mt-3 text-sm-center w-100 h-75">
+    </div>
+    <div class="productdetail col-lg-5">
+      <h1 style="font-family:Georgia font-size:50">{{ product.title }}</h1>
+      <h5 class="fw-bold text-danger">$ {{ product.discounting_price }}/-</h5>
+      <small id="decorat-text" class="fw-light text-decoration-line-through fs-5"><del>$ {{ product.selling_price }}</del></small>
+      <br><br><h4>Product Features</h4>
+      <ul class="fs-5" style="font-family:italic">
+        <li>{{ product.description }}</li>
+        <li>Composition: {{ product.composition }}</li>
+        <li>Use: {{ product.prodapp }}</li>
+
+      </ul>
+      <div class="button row flex" style="font-family:Georgia">
+        <form action="/addtocart" class="d-inline">
+          <input type="hidden" name="prod_id" value={{product.id}} />
+          <button type="submit" class="d-grip gap-2 btn1 btn btn-danger p-1 m-1 btn-lg text-white">Add to Cart</button>
+        </form>
+        <div class="btn btn-dark p-1  m-1 btn-lg ">
+          <a href="{% url 'showcart' %}" class="text-decoration-none text-white">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  #decorat-text{
+    text-decoration: line-through;
+  }
+</style>
+{% endblock content %}
